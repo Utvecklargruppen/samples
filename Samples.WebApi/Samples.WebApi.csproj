@@ -22,11 +22,18 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.17.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Samples.ApplicationLayer\Samples.ApplicationLayer.csproj" />
+    <ProjectReference Include="..\Samples.DomainLayer\Samples.DomainLayer.csproj" />
+    <ProjectReference Include="..\Samples.InfrastructureLayer\Samples.InfrastructureLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

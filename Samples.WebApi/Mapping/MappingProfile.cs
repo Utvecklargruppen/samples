@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Samples.DomainLayer;
+using Samples.WebApi.Dtos;
 
 namespace Samples.WebApi.Mapping
 {
@@ -12,6 +14,8 @@ namespace Samples.WebApi.Mapping
         /// </summary>
         public MappingProfile()
         {
+            CreateMap<User, UserDto>();
+
             //CreateMap<User, UserDto>()
             //    .ForMember(x => x.Alerts, dest => dest.MapFrom(src => src.ServerUsers.Select(us => us.ServerId)))
             //    .ForMember(x => x.CustomerIds, dest => dest.MapFrom(src => src.CustomerUsers.Select(cu => cu.CustomerId)));

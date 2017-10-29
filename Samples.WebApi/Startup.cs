@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Samples.ApplicationLayer;
 using Samples.WebApi.AppSettings;
 using Samples.WebApi.Mapping;
 using Samples.WebApi.Middleware;
@@ -80,6 +81,7 @@ namespace Samples.WebApi
         /// </summary>
         private static void ConfigureDependencyInjection(IServiceCollection services)
         {
+            services.AddTransient<IUserInteractor, UserInteractor>();
         }
 
         /// <summary>

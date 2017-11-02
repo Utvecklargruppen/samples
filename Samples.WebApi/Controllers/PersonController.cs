@@ -9,36 +9,36 @@ using System.Net;
 namespace Samples.WebApi.Controllers
 {
     /// <summary>
-    /// The user controller handles all users.
+    /// The person controller handles all persons.
     /// </summary>
     //[Authorize]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class PersonController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IUserInteractor _userInteractor;
+        private readonly IPersonInteractor _personInteractor;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserController" /> class.
+        /// Initializes a new instance of the <see cref="PersonController" /> class.
         /// </summary>
-        public UserController(IMapper mapper, IUserInteractor userInteractor)
+        public PersonController(IMapper mapper, IPersonInteractor personInteractor)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _userInteractor = userInteractor ?? throw new ArgumentNullException(nameof(userInteractor));
+            _personInteractor = personInteractor ?? throw new ArgumentNullException(nameof(personInteractor));
         }
 
         /// <summary>
-        /// Get all users.
+        /// Get all persons.
         /// </summary>
-        [ProducesResponseType(typeof(List<UserDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<PersonDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
         [HttpGet]
-        public IActionResult GetAllUsers()
+        public IActionResult GetAllPersons()
         {
-            var users = _userInteractor.GetUsers();
-            return Ok(_mapper.Map<IEnumerable<UserDto>>(users));
+            var persons = _personInteractor.GetPersons();
+            return Ok(_mapper.Map<IEnumerable<PersonDto>>(persons));
         }
     }
 }

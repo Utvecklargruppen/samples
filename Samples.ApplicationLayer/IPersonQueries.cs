@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Samples.ApplicationLayer
 {
-    public interface IUserQueries
+    public interface IPersonQueries
     {
         /// <summary>
-        /// Get all users from the data store.
+        /// Get all persons from the data store.
         /// </summary>
-        IEnumerable<User> GetAllUsers();
+        IEnumerable<Person> GetAllPersons();
     }
 }

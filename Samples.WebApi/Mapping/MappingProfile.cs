@@ -14,9 +14,9 @@ namespace Samples.WebApi.Mapping
         /// </summary>
         public MappingProfile()
         {
-            CreateMap<User, UserDto>();
+            CreateMap<Person, PersonDto>();
 
-            //CreateMap<User, UserDto>()
+            //CreateMap<Person, PersonDto>()
             //    .ForMember(x => x.Alerts, dest => dest.MapFrom(src => src.ServerUsers.Select(us => us.ServerId)))
             //    .ForMember(x => x.CustomerIds, dest => dest.MapFrom(src => src.CustomerUsers.Select(cu => cu.CustomerId)));
 

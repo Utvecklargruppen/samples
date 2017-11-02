@@ -1,14 +1,14 @@
 ﻿namespace Samples.WebApi.Dtos
 {
     /// <summary>
-    /// The user class.
+    /// The person class.
     /// </summary>
-    public class UserDto
+    public class PersonDto
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserDto"/> class.
+        /// Initializes a new instance of the <see cref="PersonDto"/> class.
         /// </summary>
-        public UserDto()
+        public PersonDto()
         {
             Description = string.Empty;
             Mail = string.Empty;

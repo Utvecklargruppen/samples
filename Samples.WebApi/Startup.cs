@@ -81,7 +81,7 @@ namespace Samples.WebApi
         /// </summary>
         private static void ConfigureDependencyInjection(IServiceCollection services)
         {
-            services.AddTransient<IUserInteractor, UserInteractor>();
+            services.AddTransient<IPersonInteractor, PersonInteractor>();
         }
 
         /// <summary>

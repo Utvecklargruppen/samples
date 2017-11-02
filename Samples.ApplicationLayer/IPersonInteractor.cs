@@ -4,13 +4,13 @@ using System.Collections.Generic;
 namespace Samples.ApplicationLayer
 {
     /// <summary>
-    /// The user interactor interface.
+    /// The person interactor interface.
     /// </summary>
-    public interface IUserInteractor
+    public interface IPersonInteractor
     {
         /// <summary>
-        /// Get all users.
+        /// Get all persons.
         /// </summary>
-        IEnumerable<User> GetUsers();
+        IEnumerable<Person> GetPersons();
     }
 }

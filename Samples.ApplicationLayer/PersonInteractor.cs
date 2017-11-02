@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Samples.ApplicationLayer
 {
-    public class UserInteractor : IUserInteractor
+    public class PersonInteractor : IPersonInteractor
     {
         /// <inheritdoc />
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<Person> GetPersons()
         {
             throw new System.NotImplementedException();
         }

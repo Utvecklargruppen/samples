@@ -1,0 +1,22 @@
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Samples.InfrastructureLayer.Daos;
+using System;
+using System.Linq;
+
+namespace Samples.InfrastructureLayer.DataContext
+{
+    public abstract class Queries
+    {
+        protected readonly IMapper Mapper;
+        private readonly SampleContext _context;
+
+        protected Queries(SampleContext context, IMapper mapper)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
+        protected IQueryable<PersonDao> Persons => _context.Persons.AsNoTracking();
+    }
+}

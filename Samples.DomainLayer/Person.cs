@@ -9,14 +9,6 @@ namespace Samples.DomainLayer
     public class Person
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Person"/> class.
-        /// </summary>
-        public Person()
-        {
-            Name = string.Empty;
-        }
-
-        /// <summary>
         /// Gets or sets a persons date of birth.
         /// </summary>
         public BirthDate DateOfBirth { get; set; }
@@ -34,6 +26,6 @@ namespace Samples.DomainLayer
         /// <summary>
         /// Gets or sets the persons name.
         /// </summary>
-        public string Name { get; set; }
+        public PersonsName Name { get; set; }
     }
 }

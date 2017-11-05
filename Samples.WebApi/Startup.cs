@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Samples.ApplicationLayer;
 using Samples.InfrastructureLayer.DataContext;
+using Samples.InfrastructureLayer.Mapping;
 using Samples.WebApi.AppSettings;
 using Samples.WebApi.Mapping;
 using Samples.WebApi.Middleware;
@@ -69,6 +70,7 @@ namespace Samples.WebApi
         {
             services.AddMvc();
             services.AddAutoMapper(mce => mce.AddProfile(new MappingProfile()));
+            services.AddAutoMapper(mce => mce.AddProfile(new DataMappingProfile()));
 
             ConfigureCors(services);
             ConfigureEntityFramework(services);
@@ -84,6 +86,7 @@ namespace Samples.WebApi
         private static void ConfigureDependencyInjection(IServiceCollection services)
         {
             services.AddTransient<IPersonInteractor, PersonInteractor>();
+            services.AddTransient<IPersonQueries, PersonQueries>();
         }
 
         /// <summary>

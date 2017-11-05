@@ -4,10 +4,12 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Samples.ApplicationLayer;
+using Samples.InfrastructureLayer.DataContext;
 using Samples.WebApi.AppSettings;
 using Samples.WebApi.Mapping;
 using Samples.WebApi.Middleware;
@@ -149,10 +151,13 @@ namespace Samples.WebApi
                 });
             });
 
+        /// <summary>
+        /// Configure settings for use of entity framework.
+        /// </summary>
         private void ConfigureEntityFramework(IServiceCollection services)
         {
             string connectionString = _configuration["Database:ConnectionString"];
-            //services.AddDbContext<SpmsContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<SampleContext>(options => options.UseSqlServer(connectionString));
         }
 
         /// <summary>

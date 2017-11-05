@@ -1,7 +1,10 @@
-﻿namespace Samples.DomainLayer
+﻿using System.Net.Mail;
+
+namespace Samples.DomainLayer
 {
     /// <summary>
     /// The person domain class.
+    /// NOTE: The is an example for a fictitious domain. Do not use!
     /// </summary>
     public class Person
     {
@@ -10,7 +13,6 @@
         /// </summary>
         public Person()
         {
-            MailAddress = string.Empty;
             Name = string.Empty;
         }
 
@@ -27,7 +29,7 @@
         /// <summary>
         /// Gets or sets the mail.
         /// </summary>
-        public string MailAddress { get; set; }
+        public MailAddress MailAddress { get; set; }
 
         /// <summary>
         /// Gets or sets the persons name.

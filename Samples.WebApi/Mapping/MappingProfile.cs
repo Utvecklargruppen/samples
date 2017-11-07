@@ -14,14 +14,10 @@ namespace Samples.WebApi.Mapping
         /// </summary>
         public MappingProfile()
         {
-            CreateMap<Person, PersonDto>();
-
-            //CreateMap<Person, PersonDto>()
-            //    .ForMember(x => x.Alerts, dest => dest.MapFrom(src => src.ServerUsers.Select(us => us.ServerId)))
-            //    .ForMember(x => x.CustomerIds, dest => dest.MapFrom(src => src.CustomerUsers.Select(cu => cu.CustomerId)));
-
-            //CreateMap<Customer, CustomerDto>()
-            //    .ForMember(x => x.ServerDtos, dest => dest.MapFrom(src => src.Servers));
+            CreateMap<Person, PersonDto>()
+                .ForMember(x => x.Name, dest => dest.MapFrom(src => src.Name.Name))
+                .ForMember(x => x.Mail, dest => dest.MapFrom(src => src.MailAddress.Address))
+                .ForMember(x => x.DateOfBirth, dest => dest.MapFrom(src => src.DateOfBirth.Date));
         }
     }
 }

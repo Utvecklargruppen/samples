@@ -4,6 +4,7 @@ using Samples.ApplicationLayer;
 using Samples.WebApi.Dtos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace Samples.WebApi.Controllers
@@ -32,12 +33,19 @@ namespace Samples.WebApi.Controllers
         /// Get all persons.
         /// </summary>
         [ProducesResponseType(typeof(List<PersonDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
         [HttpGet]
         public IActionResult GetAllPersons()
         {
             var persons = _personInteractor.GetPersons();
+
+            if (persons == null || !persons.Any())
+            {
+                return NotFound("No persons found.");
+            }
+
             return Ok(_mapper.Map<IEnumerable<PersonDto>>(persons));
         }
     }

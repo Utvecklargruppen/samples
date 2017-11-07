@@ -5,34 +5,42 @@ namespace Samples.DomainLayer
 {
     public class BirthDate
     {
-        public BirthDate() => Date = DefaultDate;
+        public BirthDate() => Date = SystemTime.DateTimeDefault;
 
         public BirthDate(DateTime dateOfBirth)
+        {
+            ValidateAge(dateOfBirth);
+
+            Date = dateOfBirth;
+        }
+
+        public int Age => CurrentAge(Date, SystemTime.Now);
+
+        public DateTime Date { get; }
+
+        public static int CurrentAge(DateTime dateOfBirth, DateTime now)
+        {
+            int age = now.Year - dateOfBirth.Year;
+
+            if (now < dateOfBirth.AddYears(age))
+            {
+                age--;
+            }
+
+            return age;
+        }
+
+        private static void ValidateAge(DateTime dateOfBirth)
         {
             if (dateOfBirth > SystemTime.Now)
             {
                 throw new ArgumentException("Birthday is never after the current time.");
             }
 
-            Date = dateOfBirth;
-        }
-
-        public static DateTime DefaultDate => new DateTime(1900, 1, 1);
-
-        public DateTime Date { get; }
-
-        public int Age()
-        {
-            var now = SystemTime.Now;
-
-            int age = now.Year - Date.Year;
-
-            if (now < Date.AddYears(age))
+            if (CurrentAge(dateOfBirth, SystemTime.Now) > 150)
             {
-                age--;
+                throw new ArgumentException("Only people that are alive are allowed.");
             }
-
-            return age;
         }
     }
 }

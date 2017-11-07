@@ -1,4 +1,6 @@
-﻿namespace Samples.WebApi.Dtos
+﻿using System;
+
+namespace Samples.WebApi.Dtos
 {
     /// <summary>
     /// The person class.
@@ -10,20 +12,19 @@
         /// </summary>
         public PersonDto()
         {
-            Description = string.Empty;
             Mail = string.Empty;
             Name = string.Empty;
         }
 
         /// <summary>
-        /// Gets or sets the description. A text field that describes the user.
+        /// Gets or sets the date of birth.
         /// </summary>
-        public string Description { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// Gets or sets the users id.
+        /// Gets or sets the last four digits.
         /// </summary>
-        public int Id { get; set; }
+        public int LastFourDigits { get; set; }
 
         /// <summary>
         /// Gets or sets the mail.

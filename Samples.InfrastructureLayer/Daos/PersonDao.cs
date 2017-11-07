@@ -1,4 +1,4 @@
-﻿using Samples.DomainLayer;
+﻿using Samples.Utilities;
 using System;
 
 namespace Samples.InfrastructureLayer.Daos
@@ -10,7 +10,7 @@ namespace Samples.InfrastructureLayer.Daos
         /// </summary>
         public PersonDao()
         {
-            DateOfBirth = BirthDate.DefaultDate;
+            DateOfBirth = SystemTime.DateTimeDefault;
             FirstName = string.Empty;
             LastName = string.Empty;
             MailAddress = string.Empty;

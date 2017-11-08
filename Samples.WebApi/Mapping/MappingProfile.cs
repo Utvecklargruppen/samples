@@ -17,6 +17,7 @@ namespace Samples.WebApi.Mapping
             CreateMap<Person, PersonDto>()
                 .ForMember(x => x.Name, dest => dest.MapFrom(src => src.Name.Name))
                 .ForMember(x => x.Mail, dest => dest.MapFrom(src => src.MailAddress.Address))
+                .ForMember(x => x.Id, dest => dest.MapFrom(src => src.Id.ToString()))
                 .ForMember(x => x.DateOfBirth, dest => dest.MapFrom(src => src.DateOfBirth.Date));
         }
     }

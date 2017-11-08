@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Samples.ApplicationLayer;
 using Samples.DomainLayer;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Samples.InfrastructureLayer.DataContext
 {
@@ -13,8 +15,14 @@ namespace Samples.InfrastructureLayer.DataContext
 
         /// <inheritdoc />
         public IEnumerable<Person> GetAllPersons()
+            => Mapper.Map<IEnumerable<Person>>(Persons);
+
+        /// <inheritdoc />
+        public Person GetPerson(Guid id)
         {
-            return Mapper.Map<IEnumerable<Person>>(Persons);
+            var personDao = Persons.SingleOrDefault(p => p.Id == id);
+
+            return Mapper.Map<Person>(personDao);
         }
     }
 }

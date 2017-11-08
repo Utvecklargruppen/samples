@@ -48,5 +48,47 @@ namespace Samples.WebApi.Controllers
 
             return Ok(_mapper.Map<IEnumerable<PersonDto>>(persons));
         }
+
+        /// <summary>
+        /// Get person from id.
+        /// </summary>
+        [ProducesResponseType(typeof(List<PersonDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
+        [HttpGet("{id}", Name = "GetPerson")]
+        public IActionResult GetPerson(string id)
+        {
+            var guid = new Guid(id);
+
+            var person = _personInteractor.GetPerson(guid);
+
+            if (person == null)
+            {
+                return NotFound($"No person found with id {id}.");
+            }
+
+            return Ok(_mapper.Map<PersonDto>(person));
+        }
+
+        ///// <summary>
+        ///// Post a new person.
+        ///// </summary>
+        //[ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.OK)]
+        //[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        //[ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
+        //[HttpPost]
+        //public IActionResult OPostPerson([FromBody]PersonDto personDto)
+        //{
+        //    var persons = _personInteractor.GetPersons();
+
+        //    if (persons == null || !persons.Any())
+        //    {
+        //        return NotFound("No persons found.");
+        //    }
+
+        //    return Created(_mapper.Map<IEnumerable<PersonDto>>(persons));
+        //}
     }
 }

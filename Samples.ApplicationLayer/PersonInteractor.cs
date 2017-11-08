@@ -8,15 +8,12 @@ namespace Samples.ApplicationLayer
     {
         private readonly IPersonQueries _queries;
 
-        public PersonInteractor(IPersonQueries queries)
-        {
-            _queries = queries ?? throw new ArgumentNullException(nameof(queries));
-        }
+        public PersonInteractor(IPersonQueries queries) => _queries = queries ?? throw new ArgumentNullException(nameof(queries));
 
         /// <inheritdoc />
-        public IEnumerable<Person> GetPersons()
-        {
-            return _queries.GetAllPersons();
-        }
+        public Person GetPerson(Guid id) => _queries.GetPerson(id);
+
+        /// <inheritdoc />
+        public IEnumerable<Person> GetPersons() => _queries.GetAllPersons();
     }
 }

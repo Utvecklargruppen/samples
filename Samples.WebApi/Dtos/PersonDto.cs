@@ -14,12 +14,18 @@ namespace Samples.WebApi.Dtos
         {
             Mail = string.Empty;
             Name = string.Empty;
+            Id = string.Empty;
         }
 
         /// <summary>
         /// Gets or sets the date of birth.
         /// </summary>
         public DateTime DateOfBirth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the last four digits.

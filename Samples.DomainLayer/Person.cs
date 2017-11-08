@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Net.Mail;
 
 namespace Samples.DomainLayer
 {
@@ -12,6 +13,11 @@ namespace Samples.DomainLayer
         /// Gets or sets a persons date of birth.
         /// </summary>
         public BirthDate DateOfBirth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the persons id.
+        /// </summary>
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets the last four digits.

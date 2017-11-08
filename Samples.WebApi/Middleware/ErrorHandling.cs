@@ -64,9 +64,15 @@ namespace Samples.WebApi.Middleware
             var code = HttpStatusCode.InternalServerError;
 
             // Here you can set status code depending on exception thrown.
-            if (exception is NotImplementedException)
+            switch (exception)
             {
-                code = HttpStatusCode.NotImplemented;
+                case NotImplementedException _:
+                    code = HttpStatusCode.NotImplemented;
+                    break;
+
+                case FormatException _:
+                    code = HttpStatusCode.BadRequest;
+                    break;
             }
 
             return code;

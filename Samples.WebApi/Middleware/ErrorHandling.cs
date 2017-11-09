@@ -70,6 +70,7 @@ namespace Samples.WebApi.Middleware
                     code = HttpStatusCode.NotImplemented;
                     break;
 
+                case ArgumentException _:
                 case FormatException _:
                     code = HttpStatusCode.BadRequest;
                     break;

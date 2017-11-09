@@ -10,6 +10,11 @@ namespace Samples.ApplicationLayer
     public interface IPersonInteractor
     {
         /// <summary>
+        /// Create a new person.
+        /// </summary>
+        Person CreatePerson(Person person);
+
+        /// <summary>
         /// Get one person.
         /// </summary>
         Person GetPerson(Guid id);

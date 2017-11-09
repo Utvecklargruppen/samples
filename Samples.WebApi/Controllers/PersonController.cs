@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Samples.ApplicationLayer;
+using Samples.DomainLayer;
 using Samples.WebApi.Dtos;
 using System;
 using System.Collections.Generic;
@@ -72,23 +73,23 @@ namespace Samples.WebApi.Controllers
             return Ok(_mapper.Map<PersonDto>(person));
         }
 
-        ///// <summary>
-        ///// Post a new person.
-        ///// </summary>
-        //[ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        //[ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
-        //[HttpPost]
-        //public IActionResult OPostPerson([FromBody]PersonDto personDto)
-        //{
-        //    var persons = _personInteractor.GetPersons();
+        /// <summary>
+        /// Post a new person.
+        /// </summary>
+        [ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
+        [HttpPost]
+        public IActionResult PostPerson([FromBody]CreatePersonDto personDto)
+        {
+            var person = _mapper.Map<Person>(personDto);
 
-        //    if (persons == null || !persons.Any())
-        //    {
-        //        return NotFound("No persons found.");
-        //    }
+            var createdPerson = _personInteractor.CreatePerson(person);
 
-        //    return Created(_mapper.Map<IEnumerable<PersonDto>>(persons));
-        //}
+            var createdPersonDto = _mapper.Map<PersonDto>(createdPerson);
+
+            return CreatedAtRoute("GetPerson", new { id = createdPersonDto.Id }, createdPersonDto);
+        }
     }
 }

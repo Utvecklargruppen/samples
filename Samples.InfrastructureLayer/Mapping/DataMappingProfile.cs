@@ -20,6 +20,12 @@ namespace Samples.InfrastructureLayer.Mapping
                .ForMember(person => person.MailAddress, dest => dest.MapFrom(personDao => CreateMailAddress(personDao.MailAddress)))
                .ForMember(person => person.DateOfBirth, dest => dest.MapFrom(personDao => CreateDateOfBirth(personDao.DateOfBirth)))
                .ForMember(person => person.Name, dest => dest.MapFrom(personDao => CreateName(personDao.FirstName, personDao.LastName)));
+
+            CreateMap<Person, PersonDao>()
+                .ForMember(personDao => personDao.MailAddress, dest => dest.MapFrom(person => person.MailAddress.Address))
+                .ForMember(personDao => personDao.DateOfBirth, dest => dest.MapFrom(person => person.DateOfBirth.Date))
+                .ForMember(personDao => personDao.FirstName, dest => dest.MapFrom(person => person.Name.FirstName))
+                .ForMember(personDao => personDao.LastName, dest => dest.MapFrom(person => person.Name.LastName));
         }
 
         private static BirthDate CreateDateOfBirth(DateTime dateOfBirth)

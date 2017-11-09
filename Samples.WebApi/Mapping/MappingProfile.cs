@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Samples.DomainLayer;
 using Samples.WebApi.Dtos;
+using System;
+using System.Net.Mail;
 
 namespace Samples.WebApi.Mapping
 {
@@ -15,10 +17,22 @@ namespace Samples.WebApi.Mapping
         public MappingProfile()
         {
             CreateMap<Person, PersonDto>()
-                .ForMember(x => x.Name, dest => dest.MapFrom(src => src.Name.Name))
-                .ForMember(x => x.Mail, dest => dest.MapFrom(src => src.MailAddress.Address))
-                .ForMember(x => x.Id, dest => dest.MapFrom(src => src.Id.ToString()))
-                .ForMember(x => x.DateOfBirth, dest => dest.MapFrom(src => src.DateOfBirth.Date));
+                .ForMember(personDto => personDto.FirstName, dest => dest.MapFrom(person => person.Name.FirstName))
+                .ForMember(personDto => personDto.LastName, dest => dest.MapFrom(person => person.Name.LastName))
+                .ForMember(personDto => personDto.Mail, dest => dest.MapFrom(person => person.MailAddress.Address))
+                .ForMember(personDto => personDto.Id, dest => dest.MapFrom(person => person.Id.ToString()))
+                .ForMember(personDto => personDto.DateOfBirth, dest => dest.MapFrom(person => person.DateOfBirth.Date));
+
+            CreateMap<PersonDto, Person>()
+                .ForMember(person => person.Name, dest => dest.MapFrom(personDto => new PersonsName(personDto.FirstName, personDto.LastName)))
+                .ForMember(person => person.MailAddress, dest => dest.MapFrom(personDto => new MailAddress(personDto.Mail)))
+                .ForMember(person => person.Id, dest => dest.MapFrom(personDto => new Guid(personDto.Id)))
+                .ForMember(person => person.DateOfBirth, dest => dest.MapFrom(personDto => new BirthDate(personDto.DateOfBirth)));
+
+            CreateMap<CreatePersonDto, Person>()
+                .ForMember(person => person.Name, dest => dest.MapFrom(createPersonDto => new PersonsName(createPersonDto.FirstName, createPersonDto.LastName)))
+                .ForMember(person => person.MailAddress, dest => dest.MapFrom(createPersonDto => new MailAddress(createPersonDto.Mail)))
+                .ForMember(person => person.DateOfBirth, dest => dest.MapFrom(createPersonDto => new BirthDate(createPersonDto.DateOfBirth)));
         }
     }
 }

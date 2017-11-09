@@ -87,6 +87,8 @@ namespace Samples.WebApi
         {
             services.AddTransient<IPersonInteractor, PersonInteractor>();
             services.AddTransient<IPersonQueries, PersonQueries>();
+            services.AddTransient<IPersonCommands, PersonCommands>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         /// <summary>

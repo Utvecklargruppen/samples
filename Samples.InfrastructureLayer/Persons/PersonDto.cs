@@ -1,9 +1,11 @@
-﻿namespace Samples.WebApi.Dtos
+﻿using Samples.ApplicationLayer.Persons;
+
+namespace Samples.InfrastructureLayer.Persons
 {
     /// <summary>
     /// The person class.
     /// </summary>
-    public class PersonDto : CreatePersonDto
+    public class PersonDto : CreatePersonDto, IPersonDto
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonDto"/> class.

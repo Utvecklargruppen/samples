@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Samples.WebApi.Dtos
+namespace Samples.InfrastructureLayer.Persons
 {
     /// <summary>
     /// A class to use when creating a person.
@@ -12,7 +12,7 @@ namespace Samples.WebApi.Dtos
         /// </summary>
         public CreatePersonDto()
         {
-            Mail = string.Empty;
+            MailAddress = string.Empty;
             FirstName = string.Empty;
             LastName = string.Empty;
         }
@@ -40,6 +40,6 @@ namespace Samples.WebApi.Dtos
         /// <summary>
         /// Gets or sets the mail.
         /// </summary>
-        public string Mail { get; set; }
+        public string MailAddress { get; set; }
     }
 }

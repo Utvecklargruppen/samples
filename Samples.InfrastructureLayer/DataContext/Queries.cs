@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Samples.InfrastructureLayer.Daos;
+using Samples.InfrastructureLayer.Persons;
 using System;
 using System.Linq;
 

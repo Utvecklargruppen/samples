@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Samples.InfrastructureLayer.Daos;
+using Samples.InfrastructureLayer.Persons;
 
 namespace Samples.InfrastructureLayer.DataContext
 {

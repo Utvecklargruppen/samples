@@ -1,6 +1,6 @@
-﻿using Samples.DomainLayer;
+﻿using Samples.DomainLayer.Persons;
 
-namespace Samples.ApplicationLayer
+namespace Samples.ApplicationLayer.Persons
 {
     public interface IPersonCommands
     {

@@ -1,19 +1,18 @@
-﻿using Samples.DomainLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Samples.ApplicationLayer
+namespace Samples.ApplicationLayer.Persons
 {
     public interface IPersonQueries
     {
         /// <summary>
         /// Get all persons from the data store.
         /// </summary>
-        IEnumerable<Person> GetAllPersons();
+        IEnumerable<IPersonDto> GetAllPersons();
 
         /// <summary>
         /// Get one person from the data store.
         /// </summary>
-        Person GetPerson(Guid id);
+        IPersonDto GetPerson(Guid id);
     }
 }

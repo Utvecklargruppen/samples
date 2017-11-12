@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace Samples.DomainLayer
+namespace Samples.DomainLayer.Persons
 {
     /// <summary>
     /// The person domain class.

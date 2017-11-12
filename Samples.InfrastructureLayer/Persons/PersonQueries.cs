@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Samples.ApplicationLayer;
-using Samples.DomainLayer;
+using Samples.ApplicationLayer.Persons;
+using Samples.InfrastructureLayer.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Samples.InfrastructureLayer.DataContext
+namespace Samples.InfrastructureLayer.Persons
 {
     public class PersonQueries : Queries, IPersonQueries
     {
@@ -14,15 +14,16 @@ namespace Samples.InfrastructureLayer.DataContext
         }
 
         /// <inheritdoc />
-        public IEnumerable<Person> GetAllPersons()
-            => Mapper.Map<IEnumerable<Person>>(Persons);
+        public IEnumerable<IPersonDto> GetAllPersons()
+        {
+            return Mapper.Map<IEnumerable<PersonDto>>(Persons);
+        }
 
         /// <inheritdoc />
-        public Person GetPerson(Guid id)
+        public IPersonDto GetPerson(Guid id)
         {
             var personDao = Persons.SingleOrDefault(p => p.Id == id);
-
-            return Mapper.Map<Person>(personDao);
+            return Mapper.Map<PersonDto>(personDao);
         }
     }
 }

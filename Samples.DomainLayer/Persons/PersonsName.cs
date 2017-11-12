@@ -1,4 +1,4 @@
-﻿namespace Samples.DomainLayer
+﻿namespace Samples.DomainLayer.Persons
 {
     public class PersonsName
     {

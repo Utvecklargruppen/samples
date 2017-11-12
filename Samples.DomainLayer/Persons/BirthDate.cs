@@ -1,7 +1,7 @@
 ﻿using Samples.Utilities;
 using System;
 
-namespace Samples.DomainLayer
+namespace Samples.DomainLayer.Persons
 {
     public class BirthDate
     {

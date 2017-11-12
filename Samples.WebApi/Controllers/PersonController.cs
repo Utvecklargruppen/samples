@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Samples.ApplicationLayer;
-using Samples.DomainLayer;
+using Samples.ApplicationLayer.Persons;
+using Samples.DomainLayer.Persons;
+using Samples.InfrastructureLayer.Persons;
 using Samples.WebApi.Dtos;
 using System;
 using System.Collections.Generic;
@@ -20,40 +21,43 @@ namespace Samples.WebApi.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IPersonInteractor _personInteractor;
+        private readonly IPersonQueries _personQueries;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonController" /> class.
         /// </summary>
-        public PersonController(IMapper mapper, IPersonInteractor personInteractor)
+        public PersonController(IMapper mapper, IPersonInteractor personInteractor, IPersonQueries personQueries)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _personInteractor = personInteractor ?? throw new ArgumentNullException(nameof(personInteractor));
+            _personQueries = personQueries ?? throw new ArgumentNullException(nameof(personQueries));
         }
 
         /// <summary>
         /// Get all persons.
         /// </summary>
-        [ProducesResponseType(typeof(List<PersonDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<IPersonDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
         [HttpGet]
         public IActionResult GetAllPersons()
         {
-            var persons = _personInteractor.GetPersons();
+            var persons = _personQueries.GetAllPersons();
 
             if (persons == null || !persons.Any())
             {
                 return NotFound("No persons found.");
             }
 
-            return Ok(_mapper.Map<IEnumerable<PersonDto>>(persons));
+            return Ok(persons);
+            //return Ok(_mapper.Map<IEnumerable<PersonDto>>(persons));
         }
 
         /// <summary>
         /// Get person from id.
         /// </summary>
-        [ProducesResponseType(typeof(List<PersonDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IPersonDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -63,14 +67,15 @@ namespace Samples.WebApi.Controllers
         {
             var guid = new Guid(id);
 
-            var person = _personInteractor.GetPerson(guid);
+            var person = _personQueries.GetPerson(guid);
 
             if (person == null)
             {
                 return NotFound($"No person found with id {id}.");
             }
 
-            return Ok(_mapper.Map<PersonDto>(person));
+            return Ok(person);
+            //return Ok(_mapper.Map<PersonDto>(person));
         }
 
         /// <summary>

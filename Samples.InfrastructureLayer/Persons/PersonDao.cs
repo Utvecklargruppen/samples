@@ -1,7 +1,7 @@
 ﻿using Samples.Utilities;
 using System;
 
-namespace Samples.InfrastructureLayer.Daos
+namespace Samples.InfrastructureLayer.Persons
 {
     public class PersonDao
     {

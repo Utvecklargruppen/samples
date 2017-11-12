@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Samples.ApplicationLayer;
-using Samples.DomainLayer;
-using Samples.InfrastructureLayer.Daos;
+using Samples.ApplicationLayer.Persons;
+using Samples.DomainLayer.Persons;
+using Samples.InfrastructureLayer.DataContext;
 using System;
 
-namespace Samples.InfrastructureLayer.DataContext
+namespace Samples.InfrastructureLayer.Persons
 {
     public class PersonCommands : Commands, IPersonCommands
     {

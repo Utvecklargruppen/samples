@@ -15,9 +15,7 @@ namespace Samples.InfrastructureLayer.Persons
 
         /// <inheritdoc />
         public IEnumerable<IPersonDto> GetAllPersons()
-        {
-            return Mapper.Map<IEnumerable<PersonDto>>(Persons);
-        }
+            => Mapper.Map<IEnumerable<PersonDto>>(Persons);
 
         /// <inheritdoc />
         public IPersonDto GetPerson(Guid id)

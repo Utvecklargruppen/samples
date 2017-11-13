@@ -10,5 +10,20 @@ namespace Samples.InfrastructureLayer.DataContext
         }
 
         public DbSet<PersonDao> Persons { get; set; }
+
+        /// <inheritdoc />
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // if (optionsBuilder.IsConfigured) return;
+
+            // string connection = @"Server=(localdb)\\mssqllocaldb;Database=Samples;Trusted_Connection=True;";
+            // optionsBuilder.UseSqlServer(connection);
+        }
+
+        /// <inheritdoc />
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //PersonConfiguration.Configure(modelBuilder);
+        }
     }
 }

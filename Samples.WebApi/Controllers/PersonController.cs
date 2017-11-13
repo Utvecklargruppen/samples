@@ -34,6 +34,24 @@ namespace Samples.WebApi.Controllers
         }
 
         /// <summary>
+        /// Delete an existing person
+        /// </summary>
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
+        [HttpDelete("{id}")]
+        public IActionResult DeletePerson(string id)
+        {
+            var guid = new Guid(id);
+
+            _personInteractor.RemovePerson(guid);
+
+            return new NoContentResult();
+        }
+
+        /// <summary>
         /// Get all persons.
         /// </summary>
         [ProducesResponseType(typeof(IEnumerable<IPersonDto>), (int)HttpStatusCode.OK)]
@@ -51,11 +69,10 @@ namespace Samples.WebApi.Controllers
             }
 
             return Ok(persons);
-            //return Ok(_mapper.Map<IEnumerable<PersonDto>>(persons));
         }
 
         /// <summary>
-        /// Get person from id.
+        /// Get a person from id.
         /// </summary>
         [ProducesResponseType(typeof(IPersonDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -75,11 +92,10 @@ namespace Samples.WebApi.Controllers
             }
 
             return Ok(person);
-            //return Ok(_mapper.Map<PersonDto>(person));
         }
 
         /// <summary>
-        /// Post a new person.
+        /// Create a new person.
         /// </summary>
         [ProducesResponseType(typeof(PersonDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -95,6 +111,24 @@ namespace Samples.WebApi.Controllers
             var createdPersonDto = _mapper.Map<PersonDto>(createdPerson);
 
             return CreatedAtRoute("GetPerson", new { id = createdPersonDto.Id }, createdPersonDto);
+        }
+
+        /// <summary>
+        /// Edit an existing person
+        /// </summary>
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpError), (int)HttpStatusCode.InternalServerError)]
+        [HttpPut]
+        public IActionResult PutPerson([FromBody]PersonDto personDto)
+        {
+            var person = _mapper.Map<Person>(personDto);
+
+            _personInteractor.EditPerson(person);
+
+            return new NoContentResult();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Samples.Utilities;
-using System;
+﻿using System;
 
 namespace Samples.InfrastructureLayer.Persons
 {
@@ -10,7 +9,6 @@ namespace Samples.InfrastructureLayer.Persons
         /// </summary>
         public PersonDao()
         {
-            DateOfBirth = SystemTime.DateTimeDefault;
             FirstName = string.Empty;
             LastName = string.Empty;
             MailAddress = string.Empty;

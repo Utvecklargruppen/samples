@@ -17,9 +17,23 @@ namespace Samples.ApplicationLayer.Persons
         /// <inheritdoc />
         public Person CreatePerson(Person person)
         {
-            var createdPerson = _commands.CreatePerson(person);
+            var createdPerson = _commands.InsertPerson(person);
             _unitOfWork.Store();
             return createdPerson;
+        }
+
+        /// <inheritdoc />
+        public void EditPerson(Person person)
+        {
+            _commands.UpdatePerson(person);
+            _unitOfWork.Store();
+        }
+
+        /// <inheritdoc />
+        public void RemovePerson(Guid id)
+        {
+            _commands.DeletePerson(id);
+            _unitOfWork.Store();
         }
     }
 }

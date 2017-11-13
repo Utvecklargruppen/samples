@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Samples.InfrastructureLayer.Exceptions;
 using Samples.WebApi.Dtos;
 using System;
 using System.Net;
@@ -73,6 +74,10 @@ namespace Samples.WebApi.Middleware
                 case ArgumentException _:
                 case FormatException _:
                     code = HttpStatusCode.BadRequest;
+                    break;
+
+                case NotFoundException _:
+                    code = HttpStatusCode.NotFound;
                     break;
             }
 

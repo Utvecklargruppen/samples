@@ -1,20 +1,21 @@
-﻿using Samples.Utilities;
-using System;
+﻿using System;
 
 namespace Samples.DomainLayer.Persons
 {
     public class BirthDate
     {
-        public BirthDate() => Date = SystemTime.DateTimeDefault;
+        private readonly DateTime _now;
 
-        public BirthDate(DateTime dateOfBirth)
+        public BirthDate(DateTime dateOfBirth, DateTime now)
         {
-            ValidateAge(dateOfBirth);
+            _now = now;
+
+            ValidateAge(dateOfBirth, now);
 
             Date = dateOfBirth;
         }
 
-        public int Age => CurrentAge(Date, SystemTime.Now);
+        public int Age => CurrentAge(Date, _now);
 
         public DateTime Date { get; }
 
@@ -30,14 +31,14 @@ namespace Samples.DomainLayer.Persons
             return age;
         }
 
-        private static void ValidateAge(DateTime dateOfBirth)
+        private static void ValidateAge(DateTime dateOfBirth, DateTime now)
         {
-            if (dateOfBirth > SystemTime.Now)
+            if (dateOfBirth > now)
             {
                 throw new ArgumentException("Birthday is never after the current time.");
             }
 
-            if (CurrentAge(dateOfBirth, SystemTime.Now) > 150)
+            if (CurrentAge(dateOfBirth, now) > 130)
             {
                 throw new ArgumentException("Only people that are alive are allowed.");
             }

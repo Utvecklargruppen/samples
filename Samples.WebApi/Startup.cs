@@ -70,8 +70,7 @@ namespace Samples.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddAutoMapper(mce => mce.AddProfile(new MappingProfile()));
-            services.AddAutoMapper(mce => mce.AddProfile(new DataMappingProfile()));
+            services.AddAutoMapper(mce => mce.AddProfile(new PersonMapping(DateTime.Now)));
 
             ConfigureCors(services);
             ConfigureEntityFramework(services);

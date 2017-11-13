@@ -1,2 +1,2 @@
 # samples
-Templates to start from.
+Samples based on DDD.

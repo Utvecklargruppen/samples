@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using Samples.DomainLayer.Persons;
-using Samples.InfrastructureLayer.Persons;
 using System;
 using System.Net.Mail;
 
-namespace Samples.InfrastructureLayer.Mapping
+namespace Samples.InfrastructureLayer.Persons
 {
     /// <summary>
     /// Defines how to map persons using auto mapper.

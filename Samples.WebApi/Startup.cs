@@ -11,7 +11,6 @@ using Microsoft.Extensions.Logging;
 using Samples.ApplicationLayer;
 using Samples.ApplicationLayer.Persons;
 using Samples.InfrastructureLayer.DataContext;
-using Samples.InfrastructureLayer.Mapping;
 using Samples.InfrastructureLayer.Persons;
 using Samples.WebApi.AppSettings;
 using Samples.WebApi.Middleware;

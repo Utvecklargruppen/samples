@@ -2,15 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Samples.InfrastructureLayer.DataContext;
 using System;
-// ReSharper disable PartialTypeWithSinglePart
 
 namespace Samples.InfrastructureLayer.DataContext.Migrations
 {
     [DbContext(typeof(SampleContext))]
-    partial class SampleContextModelSnapshot : ModelSnapshot
+    [Migration("20171120191408_Organization")]
+    partial class Organization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 
 namespace Samples.DomainLayer.Persons
@@ -33,5 +34,10 @@ namespace Samples.DomainLayer.Persons
         /// Gets or sets the persons name.
         /// </summary>
         public PersonsName Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the organizations the person belongs to.
+        /// </summary>
+        public IEnumerable<Organization> Organizations { get; set; }
     }
 }

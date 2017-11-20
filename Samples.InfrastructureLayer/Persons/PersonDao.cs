@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Samples.InfrastructureLayer.Persons
 {
@@ -43,5 +44,7 @@ namespace Samples.InfrastructureLayer.Persons
         /// Gets or sets the mail address.
         /// </summary>
         public string MailAddress { get; set; }
+
+        public List<OrganizationPersonDao> OrganizationPersons { get; set; }
     }
 }

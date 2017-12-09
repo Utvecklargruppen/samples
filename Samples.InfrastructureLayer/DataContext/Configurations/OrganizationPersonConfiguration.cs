@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Samples.InfrastructureLayer.DataContext
+namespace Samples.InfrastructureLayer.DataContext.Configurations
 {
     public class OrganizationPersonConfiguration : IEntityTypeConfiguration<OrganizationPersonDao>
     {

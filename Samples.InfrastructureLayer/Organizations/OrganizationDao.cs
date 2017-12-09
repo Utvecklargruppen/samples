@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Samples.InfrastructureLayer
+namespace Samples.InfrastructureLayer.Organizations
 {
     public class OrganizationDao
     {

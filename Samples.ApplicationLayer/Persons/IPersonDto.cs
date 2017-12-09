@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Samples.ApplicationLayer.Persons
 {
@@ -33,5 +34,10 @@ namespace Samples.ApplicationLayer.Persons
         /// Gets or sets the mail.
         /// </summary>
         string MailAddress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the organizations the person belongs to.
+        /// </summary>
+        IEnumerable<IOrganizationDto> Organizations { get; set; }
     }
 }

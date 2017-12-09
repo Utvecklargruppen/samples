@@ -1,4 +1,6 @@
-﻿using Samples.ApplicationLayer.Persons;
+﻿using Samples.ApplicationLayer;
+using Samples.ApplicationLayer.Persons;
+using System.Collections.Generic;
 
 namespace Samples.InfrastructureLayer.Persons
 {
@@ -12,9 +14,10 @@ namespace Samples.InfrastructureLayer.Persons
         /// </summary>
         public PersonDto() => Id = string.Empty;
 
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
+        /// <inheritdoc />
         public string Id { get; set; }
+
+        /// <inheritdoc />
+        public IEnumerable<IOrganizationDto> Organizations { get; set; }
     }
 }

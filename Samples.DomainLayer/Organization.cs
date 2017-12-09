@@ -1,4 +1,5 @@
 ﻿using Samples.DomainLayer.Persons;
+using System;
 using System.Collections.Generic;
 
 namespace Samples.DomainLayer
@@ -9,6 +10,11 @@ namespace Samples.DomainLayer
     /// </summary>
     public class Organization
     {
+        /// <summary>
+        /// Gets or sets the id. The primary key.
+        /// </summary>
+        public Guid Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the organization.
         /// </summary>

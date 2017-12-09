@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Samples.InfrastructureLayer.DataContext.Configurations;
+using Samples.InfrastructureLayer.Organizations;
 using Samples.InfrastructureLayer.Persons;
 
 namespace Samples.InfrastructureLayer.DataContext

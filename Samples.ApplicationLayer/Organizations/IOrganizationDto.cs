@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Samples.ApplicationLayer
+namespace Samples.ApplicationLayer.Organizations
 {
     public interface IOrganizationDto
     {

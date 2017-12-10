@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Samples.ApplicationLayer;
 using Samples.ApplicationLayer.Persons;
 using Samples.DomainLayer.Persons;
 using Samples.InfrastructureLayer.Persons;
@@ -21,12 +22,12 @@ namespace Samples.WebApi.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IPersonInteractor _personInteractor;
-        private readonly IPersonQueries _personQueries;
+        private readonly IQueries<IPersonDto> _personQueries;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonController" /> class.
         /// </summary>
-        public PersonController(IMapper mapper, IPersonInteractor personInteractor, IPersonQueries personQueries)
+        public PersonController(IMapper mapper, IPersonInteractor personInteractor, IQueries<IPersonDto> personQueries)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _personInteractor = personInteractor ?? throw new ArgumentNullException(nameof(personInteractor));
@@ -61,7 +62,7 @@ namespace Samples.WebApi.Controllers
         [HttpGet]
         public IActionResult GetAllPersons()
         {
-            var persons = _personQueries.GetAllPersons();
+            var persons = _personQueries.GetAll();
 
             if (persons == null || !persons.Any())
             {
@@ -84,7 +85,7 @@ namespace Samples.WebApi.Controllers
         {
             var guid = new Guid(id);
 
-            var person = _personQueries.GetPerson(guid);
+            var person = _personQueries.Get(guid);
 
             if (person == null)
             {

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Samples.ApplicationLayer;
 using Samples.DomainLayer.Persons;
 using System;
-using System.Collections.Generic;
 using System.Net.Mail;
 
 namespace Samples.InfrastructureLayer.Persons
@@ -26,8 +24,7 @@ namespace Samples.InfrastructureLayer.Persons
                 .ForMember(personDao => personDao.LastName, dest => dest.MapFrom(person => person.Name.LastName));
 
             CreateMap<PersonDao, PersonDto>()
-                .ForMember(person => person.Id, dest => dest.MapFrom(personDao => personDao.Id.ToString()))
-                .ForMember(person => person.Organizations, dest => dest.MapFrom(dao => CreateOrganizations(dao.OrganizationPersons)));
+                .ForMember(person => person.Id, dest => dest.MapFrom(personDao => personDao.Id.ToString()));
 
             CreateMap<Person, PersonDto>()
                 .ForMember(personDto => personDto.FirstName, dest => dest.MapFrom(person => person.Name.FirstName))
@@ -46,11 +43,6 @@ namespace Samples.InfrastructureLayer.Persons
                 .ForMember(person => person.Name, dest => dest.MapFrom(createPersonDto => new PersonsName(createPersonDto.FirstName, createPersonDto.LastName)))
                 .ForMember(person => person.MailAddress, dest => dest.MapFrom(createPersonDto => new MailAddress(createPersonDto.MailAddress)))
                 .ForMember(person => person.DateOfBirth, dest => dest.MapFrom(createPersonDto => new BirthDate(createPersonDto.DateOfBirth, now)));
-        }
-
-        private IEnumerable<IOrganizationDto> CreateOrganizations(List<OrganizationPersonDao> organizationPersons)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Samples.ApplicationLayer;
+﻿using Samples.ApplicationLayer.Organizations;
 using System;
 
 namespace Samples.InfrastructureLayer.Organizations

@@ -9,8 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Samples.ApplicationLayer;
+using Samples.ApplicationLayer.Organizations;
 using Samples.ApplicationLayer.Persons;
 using Samples.InfrastructureLayer.DataContext;
+using Samples.InfrastructureLayer.Organizations;
 using Samples.InfrastructureLayer.Persons;
 using Samples.WebApi.AppSettings;
 using Samples.WebApi.Middleware;
@@ -85,7 +87,8 @@ namespace Samples.WebApi
         private static void ConfigureDependencyInjection(IServiceCollection services)
         {
             services.AddTransient<IPersonInteractor, PersonInteractor>();
-            services.AddTransient<IPersonQueries, PersonQueries>();
+            services.AddTransient<IQueries<IPersonDto>, PersonQueries>();
+            services.AddTransient<IQueries<IOrganizationDto>, OrganizationQueries>();
             services.AddTransient<IPersonCommands, PersonCommands>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }

@@ -1,4 +1,4 @@
-﻿using Samples.ApplicationLayer;
+﻿using Samples.ApplicationLayer.Organizations;
 using Samples.ApplicationLayer.Persons;
 using System.Collections.Generic;
 

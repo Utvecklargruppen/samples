@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Samples.ApplicationLayer.Persons;
+using System;
+using System.Collections.Generic;
 
 namespace Samples.ApplicationLayer.Organizations
 {
@@ -10,5 +12,7 @@ namespace Samples.ApplicationLayer.Organizations
         Guid Id { get; set; }
 
         string Name { get; set; }
+
+        IEnumerable<IPersonDto> Persons { get; set; }
     }
 }

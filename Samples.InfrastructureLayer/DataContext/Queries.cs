@@ -18,8 +18,24 @@ namespace Samples.InfrastructureLayer.DataContext
             Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        protected IQueryable<OrganizationDao> Organizations => _context.Organizations.AsNoTracking();
+        protected IQueryable<OrganizationDao> Organizations
+            => _context.Organizations
+                .AsNoTracking();
 
-        protected IQueryable<PersonDao> Persons => _context.Persons.AsNoTracking();
+        protected IQueryable<OrganizationDao> OrganizationsWithPersons =>
+            _context.Organizations
+                .AsNoTracking()
+                .Include(o => o.OrganizationPersons)
+                .ThenInclude(op => op.Person);
+
+        protected IQueryable<PersonDao> Persons
+            => _context.Persons
+                .AsNoTracking();
+
+        protected IQueryable<PersonDao> PersonsWithOrgs
+            => _context.Persons
+                .AsNoTracking()
+                .Include(p => p.OrganizationPersons)
+                .ThenInclude(op => op.Organization);
     }
 }

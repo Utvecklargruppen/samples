@@ -1,5 +1,7 @@
 ﻿using Samples.ApplicationLayer.Organizations;
+using Samples.ApplicationLayer.Persons;
 using System;
+using System.Collections.Generic;
 
 namespace Samples.InfrastructureLayer.Organizations
 {
@@ -10,6 +12,10 @@ namespace Samples.InfrastructureLayer.Organizations
         /// </summary>
         public Guid Id { get; set; }
 
+        /// <inheritdoc />
         public string Name { get; set; }
+
+        /// <inheritdoc />
+        public IEnumerable<IPersonDto> Persons { get; set; }
     }
 }

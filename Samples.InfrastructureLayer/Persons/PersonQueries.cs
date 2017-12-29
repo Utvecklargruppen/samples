@@ -2,6 +2,7 @@
 using Samples.ApplicationLayer;
 using Samples.ApplicationLayer.Persons;
 using Samples.InfrastructureLayer.DataContext;
+using Samples.InfrastructureLayer.Organizations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,22 @@ namespace Samples.InfrastructureLayer.Persons
         /// <inheritdoc />
         public IPersonDto Get(Guid id)
         {
-            var personDao = Persons.SingleOrDefault(p => p.Id == id);
-            return Mapper.Map<PersonDto>(personDao); // TODO: Map organizations
+            var personDao = PersonsWithOrgs.SingleOrDefault(p => p.Id == id);
+            return MapOnePerson(personDao);
         }
 
         /// <inheritdoc />
         public IEnumerable<IPersonDto> GetAll()
-            => Mapper.Map<IEnumerable<PersonDto>>(Persons);  // TODO: Map organizations
+            => PersonsWithOrgs.Select(personDao => MapOnePerson(personDao));
+
+        private PersonDto MapOnePerson(PersonDao personDao)
+        {
+            var organizationDaos = personDao.OrganizationPersons.Select(op => op.Organization);
+
+            var personDto = Mapper.Map<PersonDto>(personDao);
+            personDto.Organizations = Mapper.Map<IEnumerable<OrganizationDto>>(organizationDaos);
+
+            return personDto;
+        }
     }
 }

@@ -2,7 +2,7 @@
 using Samples.InfrastructureLayer.Persons;
 using System;
 
-namespace Samples.InfrastructureLayer
+namespace Samples.InfrastructureLayer.OrganizationPersons
 {
     public class OrganizationPersonDao
     {

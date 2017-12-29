@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Samples.InfrastructureLayer.OrganizationPersons;
+using System;
 using System.Collections.Generic;
 
 namespace Samples.InfrastructureLayer.Persons

@@ -4,6 +4,7 @@ using Samples.ApplicationLayer.Organizations;
 using Samples.InfrastructureLayer.DataContext;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Samples.InfrastructureLayer.Organizations
 {
@@ -17,13 +18,12 @@ namespace Samples.InfrastructureLayer.Organizations
         /// <inheritdoc />
         public IOrganizationDto Get(Guid id)
         {
-            throw new NotImplementedException();
+            var organizationDao = Organizations.SingleOrDefault(o => o.Id == id);
+            return Mapper.Map<OrganizationDto>(organizationDao);
         }
 
         /// <inheritdoc />
         public IEnumerable<IOrganizationDto> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+            => Mapper.Map<IEnumerable<OrganizationDto>>(Organizations);
     }
 }

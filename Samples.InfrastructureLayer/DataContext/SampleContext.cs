@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Samples.InfrastructureLayer.DataContext.Configurations;
+using Samples.InfrastructureLayer.OrganizationPersons;
 using Samples.InfrastructureLayer.Organizations;
 using Samples.InfrastructureLayer.Persons;
 
@@ -29,6 +29,8 @@ namespace Samples.InfrastructureLayer.DataContext
         /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new PersonConfiguration());
+            modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
             modelBuilder.ApplyConfiguration(new OrganizationPersonConfiguration());
         }
     }

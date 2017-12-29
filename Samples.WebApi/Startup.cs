@@ -72,6 +72,7 @@ namespace Samples.WebApi
         {
             services.AddMvc();
             services.AddAutoMapper(mce => mce.AddProfile(new PersonMapping(DateTime.Now)));
+            services.AddAutoMapper(mce => mce.AddProfile(new OrganizationMapping()));
 
             ConfigureCors(services);
             ConfigureEntityFramework(services);
